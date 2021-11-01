@@ -12,13 +12,16 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
+import static br.com.devnaldo.api_heros.contrans.HeroCotrans.ENDPOINT_DYNAMO;
+import static br.com.devnaldo.api_heros.contrans.HeroCotrans.REGION_DYNAMO;
+
 @Configuration
 @EnableDynamoDBRepositories
 public class HerosTable {
     public static void main(String[] args) throws Exception {
 
         AmazonDynamoDB cliente = AmazonDynamoDBClientBuilder.standard()
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration())
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
                 .build();
 
         DynamoDB dynamoDB = new DynamoDB(cliente);
